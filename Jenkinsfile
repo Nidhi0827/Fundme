@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         APP_NAME = 'fundme'
-        DOCKER_COMPOSE_FILE = 'docker-compose.yml'
     }
 
     stages {
@@ -18,29 +17,30 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Stage 2: Building application with Maven...'
-                bat 'mvnw.cmd clean package -DskipTests'
+                sh 'chmod +x mvnw'
+                sh './mvnw clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Stage 3: Running JUnit tests...'
-                bat 'mvnw.cmd test'
+                sh './mvnw test'
             }
         }
 
         stage('Docker Build') {
             steps {
                 echo 'Stage 4: Building Docker image...'
-                bat 'docker build -t fundme:latest .'
+                sh 'docker build -t fundme:latest .'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Stage 5: Deploying with Docker Compose...'
-                bat 'docker-compose down'
-                bat 'docker-compose up -d'
+                sh 'docker compose down || true'
+                sh 'docker compose up -d'
             }
         }
     }
