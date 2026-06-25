@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'fundme-app'
+    static_configs:
+      - targets: ['fundme-app:8080']
+    metrics_path: '/actuator/prometheus'
