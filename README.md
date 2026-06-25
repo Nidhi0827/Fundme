@@ -29,3 +29,11 @@ deployed using modern DevOps practices.
 - [ ] Phase 5: Kubernetes Deployment
 - [ ] Phase 6: Terraform + Ansible
 - [ ] Phase 7: Prometheus + Grafana Monitoring
+
+- [x] Phase 1: Spring Boot REST APIs + MySQL ✅
+- [x] Phase 2: Dockerized app with Docker Compose ✅
+- [x] Phase 3: Jenkins CI/CD Pipeline ✅
+- [x] Phase 4: AWS Deployment (EC2 + RDS) ✅
+- [ ] Phase 5: Kubernetes Deployment
+- [ ] Phase 6: Terraform + Ansible
+- [ ] Phase 7: Prometheus + Grafana Monitoring
