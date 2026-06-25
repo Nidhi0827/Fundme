@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fundme-deployment
+  labels:
+    app: fundme
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fundme
+  template:
+    metadata:
+      labels:
+        app: fundme
+    spec:
+      containers:
+        - name: fundme-app
+          image: fundme:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: fundme-config
+            - secretRef:
+                name: fundme-secret
+          readinessProbe:
+            httpGet:
+              path: /api/campaigns
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/campaigns
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 30

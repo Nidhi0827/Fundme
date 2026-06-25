@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fundme-config
+data:
+  SPRING_DATASOURCE_URL: "jdbc:mysql://fundme-db.c3qgu8gi8tgx.ap-south-1.rds.amazonaws.com:3306/fundme_db"
+  SPRING_DATASOURCE_USERNAME: "admin"
